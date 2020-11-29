@@ -30,6 +30,5 @@ export default gql`
 
   extend type Mutation {
     login(loginInput: LoginInput): User!
-    createUser: UserInfo!
   }
 `;

@@ -1,8 +1,8 @@
-import Company from '../models/Company';
+import Company, { ICompany } from '../models/Company';
 
 export default {
   Query: {
-    getCompanies: async (parent, args, ctx) => {
+    getCompanies: async (): Promise<Array<ICompany>> => {
       try {
         const companies = await Company.find();
         return companies;

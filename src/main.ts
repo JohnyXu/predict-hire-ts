@@ -28,10 +28,8 @@ async function bootstrap() {
     typeDefs,
     resolvers,
     validationRules: [depthLimit(7)],
-    context: async ({ req, res }) => {
-      const user: UserEntity = await getTokenUser(
-        req.headers.authorization,
-      );
+    context: async ({ req }) => {
+      const user: UserEntity = await getTokenUser(req.headers.authorization);
       return { user };
     },
     playground: true,

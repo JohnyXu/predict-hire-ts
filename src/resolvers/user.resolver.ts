@@ -1,13 +1,13 @@
-import {
-  AuthenticationError,
-  UserInputError,
-} from 'apollo-server-express';
+import { IUser } from './../models/User';
+import { AuthenticationError, UserInputError } from 'apollo-server-express';
 import { generateUserToken } from '../helper/JwtService';
 import User from '../models/User';
+import { UserEntity } from '../interface/user.types';
 
 export default {
   Query: {
-    getUsers: async (parent, args, context) => {
+    // eslint-disable-next-line
+    getUsers: async (parent, args, context): Promise<Array<IUser>> => {
       if (!context.user) {
         throw new AuthenticationError(
           'Login first and attach token with request',
@@ -20,7 +20,8 @@ export default {
       }
     },
 
-    getUser: async (parent, { id }, context) => {
+    // eslint-disable-next-line
+    getUser: async (parent, { id }, context): Promise<IUser> => {
       if (!context.user) {
         throw new AuthenticationError(
           'Login first and attach token with request',
@@ -44,19 +45,12 @@ export default {
   },
 
   Mutation: {
-    createUser: async () => {
-      // for test
-      const newUser = new User({
-        name: 'test',
-        username: 'username1',
-        password: 'test',
-        role: 'admin',
-        companyId: '5e5df7fc6953acd3dc50fe8f',
-      });
-      await newUser.save();
-      return newUser;
-    },
-    login: async (parent, { loginInput: { username, password } }) => {
+    login: async (
+      // eslint-disable-next-line
+      parent,
+      // eslint-disable-next-line
+      { loginInput: { username, password } },
+    ): Promise<UserEntity> => {
       if (!username.trim()) {
         throw new UserInputError("Error: username can't be empty");
       }

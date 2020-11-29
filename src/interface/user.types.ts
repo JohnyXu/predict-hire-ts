@@ -1,5 +1,3 @@
-import { Document } from 'mongoose';
-
 export interface UserEntity {
   id: string;
   name: string;
