@@ -1,5 +1,6 @@
 import { gql } from 'apollo-server-express';
 import helloSchema from './hello.graphql';
+import companySchema from './company.graphql';
 
 const schema = gql`
   type Query {
@@ -11,4 +12,4 @@ const schema = gql`
   }
 `;
 
-export default [schema, helloSchema];
+export default [schema, helloSchema, companySchema];

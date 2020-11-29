@@ -1,5 +1,7 @@
 {
+  "compileOnSave": true,
   "compilerOptions": {
+    "target": "es6",
     "module": "commonjs",
     "declaration": false,
     "noImplicitAny": false,
@@ -9,11 +11,12 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "target": "es6",
-    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "sourceMap": false,
     "allowJs": true,
     "outDir": "./dist"
   },
-  "include": ["src/**/*"],
+  "include": ["global.d.ts", "src/**/*", "seeder"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
