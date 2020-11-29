@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
+import config from '../config';
 
 const connectMongo = async () => {
-  const mongoUri = process.env.MONGO_URI || '';
+  const mongoUri = config.mongodb.uri;
   if (!mongoUri) {
     throw new Error("Can't connect Mongo, Wrong MONGO_URI");
   }

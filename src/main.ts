@@ -1,11 +1,19 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
+import { getTokenUser } from './helper/JwtService';
 import express from 'express';
+
 import { ApolloServer } from 'apollo-server-express';
 import depthLimit from 'graphql-depth-limit';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import config from './config';
 import typeDefs from './typedefs';
 import resolvers from './resolvers';
 import connectMongo from './helper/connect';
+
+import { UserEntity } from './interface/user.types';
 
 async function bootstrap() {
   const app = express();
@@ -21,13 +29,16 @@ async function bootstrap() {
     resolvers,
     validationRules: [depthLimit(7)],
     context: async ({ req, res }) => {
-      return { req, res };
+      const user: UserEntity = await getTokenUser(
+        req.headers.authorization,
+      );
+      return { user };
     },
     playground: true,
   });
   server.applyMiddleware({ app });
 
-  const PORT = process.env.PORT || 3005;
+  const PORT = config.app.port;
   app.listen(PORT, () => {
     const url = `http://localhost:${PORT}`;
     console.log(`\n🚀  Listening on ${url}`);

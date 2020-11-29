@@ -17,6 +17,6 @@
     "allowJs": true,
     "outDir": "./dist"
   },
-  "include": ["global.d.ts", "src/**/*", "seeder"],
+  "include": ["src/**/*", "seeder"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
