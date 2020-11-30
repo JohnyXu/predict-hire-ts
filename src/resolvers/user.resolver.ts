@@ -59,7 +59,6 @@ export default {
       }
 
       const user = await User.findOne({ username });
-
       if (!user) {
         throw new UserInputError('Invalid user account');
       }

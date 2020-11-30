@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon",
     "dist": "tsc",
+    "dev": "nodemon",
+    "predev": "yarn seeder:import",
     "seeder:import": "node seeder/index.js",
     "seeder:destroy": "node seeder/index.js -d",
     "fix": "npm run prettier && npm run eslint",
