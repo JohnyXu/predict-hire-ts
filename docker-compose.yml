@@ -1,0 +1,26 @@
+version: '3'
+services:
+  api:
+    depends_on:
+      - mongo
+    build:
+      dockerfile: Dockerfile
+      context: .
+    restart: always
+    ports:
+      - '3005:3005'
+    volumes:
+      - /app/node_modules
+      - .:/app
+    environment:
+      - NODE_ENV=development
+  mongo:
+    image: 'mongo:latest'
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongo-data:/data/db/predicthire
+volumes:
+  mongo-data:
