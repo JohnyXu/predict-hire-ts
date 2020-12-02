@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Company resolver get companies 1`] = `
+Array [
+  Object {
+    "address": "15 Newton St",
+    "id": "5e5df7fc6953acd3dc50fe8f",
+    "name": "PredictiveHire",
+  },
+]
+`;

@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt';
-import config from '../../src/config';
 
-const salt: number = Number(config.app.salt);
+const salt: number = Number(process.env.SALT);
 const markPwd = bcrypt.hashSync('mark', salt);
 const bobPwd = bcrypt.hashSync('bob', salt);
 

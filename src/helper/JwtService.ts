@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 import { AuthenticationError } from 'apollo-server-express';
 import { UserEntity } from '../interface/user.types';
 import { IUser } from './../models/User';
-import config from '../config';
 
 export const getTokenUser = (authorization: string): UserEntity => {
   if (!authorization) {
@@ -13,7 +12,7 @@ export const getTokenUser = (authorization: string): UserEntity => {
     throw new Error('Invalid Authorization format');
   }
   try {
-    const user: UserEntity = jwt.verify(token, config.token.secret);
+    const user: UserEntity = jwt.verify(token, process.env.SECRET);
     return user;
   } catch (error) {
     throw new AuthenticationError('Invalid Token or Expired Token');
@@ -29,7 +28,7 @@ export const generateUserToken = (user: IUser): string => {
       role: user.role,
       companyId: user.companyId,
     },
-    config.token.secret,
+    process.env.SECRET,
     { expiresIn: '1h' },
   );
 };

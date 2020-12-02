@@ -8,7 +8,6 @@ import { ApolloServer } from 'apollo-server-express';
 import depthLimit from 'graphql-depth-limit';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import config from './config';
 import typeDefs from './typedefs';
 import resolvers from './resolvers';
 import connectMongo from './helper/connect';
@@ -36,7 +35,7 @@ async function bootstrap() {
   });
   server.applyMiddleware({ app });
 
-  const PORT = config.app.port;
+  const PORT = process.env.PORT || 3005;
   app.listen(PORT, () => {
     const url = `http://localhost:${PORT}`;
     console.log(`\n🚀  Listening on ${url}`);

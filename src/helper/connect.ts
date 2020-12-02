@@ -1,8 +1,11 @@
 import mongoose from 'mongoose';
-import config from '../config';
 
 const connectMongo = async (): Promise<typeof mongoose> => {
-  const mongoUri = config.mongodb.uri;
+  const mongoUri =
+    process.env.NODE_ENV === 'development'
+      ? process.env.MONGO_URI
+      : process.env.MONGO_URI_TEST;
+
   if (!mongoUri) {
     throw new Error("Can't connect Mongo, Wrong MONGO_URI");
   }
@@ -12,4 +15,9 @@ const connectMongo = async (): Promise<typeof mongoose> => {
     useNewUrlParser: true,
   });
 };
+
+export const disconnectDB = (): void => {
+  mongoose.disconnect();
+};
+
 export default connectMongo;
