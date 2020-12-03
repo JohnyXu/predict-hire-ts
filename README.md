@@ -6,6 +6,7 @@ Nodejs, Typescript, Mongodb, Docker, GraphQL, Apollo, Jest, ESLint, Prettier
 
 ### Project Structure
 
+```
 src/
 ├── seeder/ add seeder data to mongodb for test
 ├── test/ some tests file on resolver file
@@ -20,6 +21,7 @@ src/
 ├── typdefs/ graphql definition files
 ├── validator/ validation on user input
 └── main.ts
+```
 
 ## Getting Started
 
