@@ -1,47 +1,40 @@
+import { isAuthUser } from './../middleware/protectRoute';
 import { IUser } from './../models/User';
-import { AuthenticationError, UserInputError } from 'apollo-server-express';
+import { UserInputError } from 'apollo-server-express';
 import { generateUserToken } from '../helper/JwtService';
 import User from '../models/User';
 import { UserEntity } from '../interface/user.types';
 
 export default {
   Query: {
-    // eslint-disable-next-line
-    getUsers: async (parent, args, context): Promise<Array<IUser>> => {
-      if (!context.user) {
-        throw new AuthenticationError(
-          'Login first and attach token with request',
-        );
-      }
-      try {
-        return await User.find();
-      } catch (error) {
-        throw new Error(error);
-      }
-    },
-
-    // eslint-disable-next-line
-    getUser: async (parent, { id }, context): Promise<IUser> => {
-      if (!context.user) {
-        throw new AuthenticationError(
-          'Login first and attach token with request',
-        );
-      }
-
-      if (!id.trim()) {
-        throw new UserInputError('Empty user id');
-      }
-
-      try {
-        const user = await User.findById(id);
-        if (user) {
-          return user;
+    getUsers: isAuthUser(
+      // eslint-disable-next-line
+      async (parent, args, context): Promise<Array<IUser>> => {
+        try {
+          return await User.find();
+        } catch (error) {
+          throw new Error(error);
         }
-        throw new Error('User not found');
-      } catch (error) {
-        throw new Error(error);
-      }
-    },
+      },
+    ),
+
+    getUser: isAuthUser(
+      // eslint-disable-next-line
+      async (parent, { id }, context): Promise<IUser> => {
+        if (!id.trim()) {
+          throw new UserInputError('Empty user id');
+        }
+        try {
+          const user = await User.findById(id);
+          if (user) {
+            return user;
+          }
+          throw new Error('User not found');
+        } catch (error) {
+          throw new Error(error);
+        }
+      },
+    ),
   },
 
   Mutation: {

@@ -24,14 +24,14 @@ function convertExpiredAt2Date(expiredAt: string): string {
   return newExpired;
 }
 
-function convertIVacancy2Entity(vacany: IVacancy): VacancyEntity {
+function convertIVacancy2Entity(vacancy: IVacancy): VacancyEntity {
   const retVacancy: VacancyEntity = {
-    id: vacany.id,
-    title: vacany.title,
-    description: vacany.description,
-    userId: vacany.userId,
-    companyId: vacany.companyId,
-    expiredAt: formatDate(moment(vacany.expiredAt)),
+    id: vacancy.id,
+    title: vacancy.title,
+    description: vacancy.description,
+    userId: vacancy.userId,
+    companyId: vacancy.companyId,
+    expiredAt: formatDate(moment(vacancy.expiredAt)),
   };
   return retVacancy;
 }

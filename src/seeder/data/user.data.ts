@@ -1,3 +1,4 @@
+import { ROLE } from './../../constants/user.constant';
 import bcrypt from 'bcrypt';
 
 const salt = Number(process.env.SALT);
@@ -10,7 +11,7 @@ const users = [
     name: 'Bob Markle',
     username: 'bob',
     password: bobPwd,
-    role: 'user',
+    role: ROLE.User,
     companyId: '5e5df7fc6953acd3dc50fe8f',
   },
   {
@@ -18,7 +19,7 @@ const users = [
     name: 'Mark Smith',
     username: 'mark',
     password: markPwd,
-    role: 'admin',
+    role: ROLE.Admin,
     companyId: '5e5df7fc6953acd3dc50fe8f',
   },
 ];

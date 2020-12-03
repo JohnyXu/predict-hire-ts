@@ -1,3 +1,4 @@
+import { ROLE } from './../constants/user.constant';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -13,7 +14,7 @@ const testUser = {
   id: '5e5df7f450571fb3aecdcf22',
   name: 'Mark Smith',
   username: 'mark',
-  role: 'admin',
+  role: ROLE.Admin,
   companyId: '5e5df7fc6953acd3dc50fe8f',
 };
 
@@ -51,7 +52,7 @@ describe('User resolver', () => {
       variables: { username: 'mark', password: 'mark' },
     });
     expect(loginMark.username).toBe('mark');
-    expect(loginMark.role).toBe('admin');
+    expect(loginMark.role).toBe(ROLE.Admin);
   });
 
   test('login normal user success', async () => {
