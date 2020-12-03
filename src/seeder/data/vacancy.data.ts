@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { formatDate } from '../../src/helper/date';
+import { formatDate } from '../../helper/date';
 
 const vacancies = [
   {

@@ -4,11 +4,11 @@ import companies from './data/company.data';
 import users from './data/user.data';
 import vacancies from './data/vacancy.data';
 
-import Company from '../src/models/Company';
-import User from '../src/models/User';
-import Vacancy from '../src/models/Vacancy';
+import Company from '../models/Company';
+import User from '../models/User';
+import Vacancy from '../models/Vacancy';
 
-import connectMongo from '../src/helper/connect';
+import connectMongo from '../helper/connect';
 dotenv.config();
 
 const importData = async () => {
